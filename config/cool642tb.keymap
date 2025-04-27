@@ -73,7 +73,7 @@
         };
 
         scrool {
-            bindings = <&mo 1>;
+            bindings = <&instant_layer_switch 1>;
             key-positions = <18 20>;
             require-prior-idle-ms = <20>;
         };

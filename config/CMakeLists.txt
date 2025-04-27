@@ -1,2 +1,3 @@
 zephyr_include_directories(config)
 zephyr_include_directories(config/behaviors)
+target_sources(app PRIVATE src/behavior_combo_layer_switch.c)

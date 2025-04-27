@@ -1,0 +1,12 @@
+/ {
+    behaviors {
+        instant_layer_switch: behavior_instant_layer_switch {
+            compatible = "zmk,behavior-momentary-layer";
+            label = "INSTANT_LAYER_SWITCH";
+            bindings = <>;
+            #binding-cells = <1>;
+
+            flavor = "hold-preferred";
+        };
+    };
+};

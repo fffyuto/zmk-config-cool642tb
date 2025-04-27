@@ -1,0 +1,9 @@
+/ {
+    behaviors {
+        combo_layer_switch: behavior_combo_layer_switch {
+            compatible = "zmk,behavior-combo-layer-switch";
+            label = "COMBO_LAYER_SWITCH";
+            #binding-cells = <1>;
+        };
+    };
+};

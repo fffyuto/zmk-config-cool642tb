@@ -1,0 +1,2 @@
+zephyr_include_directories(config)
+zephyr_include_directories(config/behaviors)

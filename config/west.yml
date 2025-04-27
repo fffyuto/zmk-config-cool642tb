@@ -1,7 +1,7 @@
 manifest:
   remotes:
     - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
+      url-base: https://github.com/fffyuto/zmk.git
     - name: telzo2000
       url-base: https://github.com/telzo2000
   projects:

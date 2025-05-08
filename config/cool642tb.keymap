@@ -137,7 +137,7 @@
         FUNCTION {
             bindings = <
 &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &text_box                                         &kp N6         &kp N7        &kp N8                &kp N9                 &kp N0
-&none         &none         &none         &none         &hyouji_kotei  &bt BT_CLR_ALL  &kp INT_MUHENKAN   &kp AMPERSAND  &kp SQT       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp ENTER
+&none         &none         &none         &kp LG(TAB)   &hyouji_kotei  &bt BT_CLR_ALL  &kp INT_MUHENKAN   &kp AMPERSAND  &kp SQT       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp ENTER
 &none         &none         &none         &none         &macro         &none           &kp RIGHT_BRACKET  &kp TILDE      &kp QUESTION  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp QUESTION
 &none         &none         &none         &none         &none          &none           &kp MINUS          &kp COMMA                                                                 &kp LEFT_SHIFT
             >;
@@ -169,10 +169,10 @@
 
         MOUSE {
             bindings = <
-&kp Q             &kp W    &kp E             &kp R         &kp T                                  &kp Y        &kp U  &kp I     &kp O     &kp P
-&kp A             &kp S    &kp D             &kp F         &kp G      &kp N1     &kp N2           &kp H        &kp J  &kp K     &kp L     &lt 5 SINGLE_QUOTE
-&mt LEFT_SHIFT Z  &kp X    &kp C             &kp V         &kp B      &kp N3     &kp N4           &kp N        &kp M  &mkp MB1  &mkp MB2  &kp SLASH
-&mt LCTRL ESCAPE  &kp TAB  &kp LEFT_CONTROL  &kp LEFT_GUI  &kp SPACE  &kp LCTRL  &lt 2 BACKSPACE  &lt 2 ENTER                             &kp LEFT_SHIFT
+&kp Q             &kp W    &kp E         &kp R         &kp T                                  &kp Y        &kp U  &kp I      &kp O       &kp P
+&kp A             &kp S    &kp D         &kp F         &kp G      &kp N1     &kp MINUS        &kp H        &kp J  &kp K      &kp L       &lt 5 SINGLE_QUOTE
+&mt LEFT_SHIFT Z  &kp X    &kp C         &kp V         &kp B      &kp N3     &kp N4           &kp N        &kp M  &kp COMMA  &kp PERIOD  &kp SLASH
+&mt LCTRL ESCAPE  &kp TAB  &kp LEFT_GUI  &kp LEFT_ALT  &kp SPACE  &kp LCTRL  &lt 2 BACKSPACE  &lt 2 ENTER                                &kp LEFT_SHIFT
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;

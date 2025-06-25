@@ -8,7 +8,6 @@
 #define NUM 6
 
 // OS設定を日本語キーボードのまま使用するための変換定義
-
 #define JP_DQUOTE       AT                // "
 #define JP_AMPERSAND    CARET             // &
 #define JP_QUOTE        AMPERSAND         // '
@@ -33,9 +32,19 @@
 #define JP_EISU         LANGUAGE_2        // 英数
 #define JP_HANZEN       GRAVE             // 半角/全角
 
+// hold-tapビヘイビアの改善設定
 &mt {
-    flavor = "balanced";
-    quick-tap-ms = <0>;
+    flavor = "tap-preferred";  // balanced → tap-preferredに変更
+    tapping-term-ms = <200>;   // タッピング時間を明示的に設定
+    quick-tap-ms = <175>;      // 0 → 175msに変更
+    require-prior-idle-ms = <50>;  // 事前のアイドル時間を追加
+};
+
+&lt {
+    flavor = "tap-preferred";  // balanced → tap-preferredに変更  
+    tapping-term-ms = <200>;   // タッピング時間を明示的に設定
+    quick-tap-ms = <175>;      // 0 → 175msに変更
+    require-prior-idle-ms = <50>;  // 事前のアイドル時間を追加
 };
 
 / {
@@ -110,13 +119,27 @@
     };
 
     behaviors {
+        // より応答性の高いlayer-tapビヘイビアを定義
+        lt_responsive: lt_responsive {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LAYER_TAP_RESPONSIVE";
+            bindings = <&mo>, <&kp>;
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <150>;  // より短いタッピング時間
+            quick-tap-ms = <125>;
+            require-prior-idle-ms = <50>;
+        };
+
         lt_to_layer_0: lt_to_layer_0 {
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
             bindings = <&mo>, <&to_layer_0>;
-
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>;  // より短いタッピング時間
+            flavor = "tap-preferred";
+            quick-tap-ms = <125>;
+            require-prior-idle-ms = <50>;
         };
     };
 
@@ -126,9 +149,9 @@
         default_layer {
             bindings = <
 &kp Q                 &kp W    &kp E         &kp R         &kp T                                                        &kp Y        &kp U  &kp I      &kp O       &kp P
-&kp A                 &kp S    &kp D         &kp F         &kp G        &to 6                 &kp MINUS                 &kp H        &kp J  &kp K      &kp L       &lt 5 SINGLE_QUOTE
+&kp A                 &kp S    &kp D         &kp F         &kp G        &to 6                 &kp MINUS                 &kp H        &kp J  &kp K      &kp L       &lt_responsive 5 SINGLE_QUOTE
 &mt LEFT_SHIFT Z      &kp X    &kp C         &kp V         &kp B        &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS     &kp N        &kp M  &kp COMMA  &kp PERIOD  &kp SLASH
-&mt LEFT_SHIFT LCTRL  &kp TAB  &kp LEFT_GUI  &kp LEFT_ALT  &lt 1 SPACE  &mt LCTRL CAPSLOCK    &mt LEFT_SHIFT BACKSPACE  &lt 2 ENTER                                &kp BACKSLASH
+&mt LEFT_SHIFT LCTRL  &kp TAB  &kp LEFT_GUI  &kp LEFT_ALT  &lt_responsive 1 SPACE  &mt LCTRL CAPSLOCK    &mt LEFT_SHIFT BACKSPACE  &lt_responsive 2 ENTER                                &kp BACKSLASH
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -150,7 +173,7 @@
 &kp F1       &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp F5                                                &kp Y          &kp K_COPY     &kp K_CUT       &kp K_PASTE      &kp P
 &kp AT_SIGN  &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp COLON   &kp N1          &kp INT_KATAKANAHIRAGANA  &kp LEFT       &kp DELETE     &kp BACKSPACE   &kp LS(SEMI)     &kp LS(APOS)
 &kp Z        &kp N7        &kp N8        &kp N9        &kp B       &kp LEFT_BRACE  &kp RIGHT_BRACE           &kp LC(SPACE)  &kp RG(SPACE)  &kp LEFT_BRACE  &kp RIGHT_BRACE  &kp SLASH
-&kp RSHIFT   &kp TAB       &kp LCTRL     &kp RGUI      &kp PERIOD  &kp N0          &mt LEFT_SHIFT BACKSPACE  &lt 2 ENTER                                                    &kp JP_UNDERSCORE
+&kp RSHIFT   &kp TAB       &kp LCTRL     &kp RGUI      &kp PERIOD  &kp N0          &mt LEFT_SHIFT BACKSPACE  &lt_responsive 2 ENTER                                                    &kp JP_UNDERSCORE
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -161,7 +184,7 @@
 &kp Q       &kp W      &kp E     &kp R     &kp T                        &kp Y        &kp U  &kp I      &kp O       &kp P
 &kp A       &kp S      &kp D     &kp F     &kp G        &kp N1  &kp N2  &kp H        &kp J  &kp K      &kp L       &kp ENTER
 &kp Z       &kp X      &kp C     &kp V     &kp B        &kp N3  &kp N4  &kp N        &kp M  &kp COMMA  &kp PERIOD  &kp SLASH
-&kp RSHIFT  &kp LCTRL  &kp LGUI  &kp LALT  &lt 1 SPACE  &kp N5  &kp N6  &lt 2 SPACE                                &kp BSPC
+&kp RSHIFT  &kp LCTRL  &kp LGUI  &kp LALT  &lt_responsive 1 SPACE  &kp N5  &kp N6  &lt_responsive 2 SPACE                                &kp BSPC
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -170,9 +193,9 @@
         MOUSE {
             bindings = <
 &kp Q             &kp W    &kp E         &kp R         &kp T                                             &kp Y        &kp U  &kp I      &kp O       &kp P
-&kp A             &kp S    &kp D         &kp F         &kp G        &kp N1              &kp MINUS        &kp H        &kp J  &kp K      &kp L       &lt 5 SINGLE_QUOTE
+&kp A             &kp S    &kp D         &kp F         &kp G        &kp N1              &kp MINUS        &kp H        &kp J  &kp K      &kp L       &lt_responsive 5 SINGLE_QUOTE
 &mt LEFT_SHIFT Z  &kp X    &kp C         &kp V         &kp B        &kp N3              &kp N4           &kp N        &kp M  &kp COMMA  &kp PERIOD  &kp SLASH
-&mt LCTRL ESCAPE  &kp TAB  &kp LEFT_GUI  &kp LEFT_ALT  &lt 1 SPACE  &mt LCTRL CAPSLOCK  &lt 2 BACKSPACE  &lt 2 ENTER                                &kp LEFT_SHIFT
+&mt LCTRL ESCAPE  &kp TAB  &kp LEFT_GUI  &kp LEFT_ALT  &lt_responsive 1 SPACE  &mt LCTRL CAPSLOCK  &lt_responsive 2 BACKSPACE  &lt_responsive 2 ENTER                                &kp LEFT_SHIFT
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -183,7 +206,7 @@
 &kp Q       &kp W      &kp E     &kp R     &kp T                          &kp Y     &kp U     &kp UP     &kp O       &kp P
 &kp A       &kp S      &kp D     &kp F     &kp G        &kp N1  &kp N2    &kp H     &kp LEFT  &kp DOWN   &kp RIGHT   &kp ENTER
 &kp Z       &kp X      &kp C     &kp V     &kp B        &kp N3  &kp N4    &kp N     &kp M     &kp COMMA  &kp PERIOD  &kp SLASH
-&kp RSHIFT  &kp LCTRL  &kp LGUI  &kp LALT  &lt 1 SPACE  &kp N5  &mkp MB4  &mkp MB5                                   &kp BSPC
+&kp RSHIFT  &kp LCTRL  &kp LGUI  &kp LALT  &lt_responsive 1 SPACE  &kp N5  &mkp MB4  &mkp MB5                                   &kp BSPC
             >;
 
             sensor-bindings = <&inc_dec_kp PG_UP PAGE_DOWN>;
@@ -194,7 +217,7 @@
 &kp ESC         &kp Q      &kp W     &kp E     &mt NUMBER_4 NUMBER_3                     &kp Y        &kp U  &kp I      &kp O       &kp P
 &kp TAB         &kp A      &kp S     &kp D     &kp G                  &to 0      &kp N2  &kp H        &kp J  &kp K      &kp L       &kp ENTER
 &kp LEFT_SHIFT  &kp X      &kp C     &kp V     &kp B                  &kp N3     &kp N4  &kp N        &kp M  &kp COMMA  &kp PERIOD  &kp SLASH
-&kp LCTRL       &kp LCTRL  &kp LGUI  &kp LALT  &kp M                  &kp SPACE  &kp N6  &lt 2 SPACE                                &kp BSPC
+&kp LCTRL       &kp LCTRL  &kp LGUI  &kp LALT  &kp M                  &kp SPACE  &kp N6  &lt_responsive 2 SPACE                                &kp BSPC
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;

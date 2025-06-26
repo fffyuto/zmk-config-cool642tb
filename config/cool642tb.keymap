@@ -37,14 +37,14 @@
     flavor = "tap-preferred";  // balanced → tap-preferredに変更
     tapping-term-ms = <200>;   // タッピング時間を明示的に設定
     quick-tap-ms = <175>;      // 0 → 175msに変更
-    require-prior-idle-ms = <50>;  // 事前のアイドル時間を追加
+    require-prior-idle-ms = <0>;  // 事前のアイドル時間を追加
 };
 
 &lt {
     flavor = "tap-preferred";  // balanced → tap-preferredに変更  
     tapping-term-ms = <200>;   // タッピング時間を明示的に設定
     quick-tap-ms = <175>;      // 0 → 175msに変更
-    require-prior-idle-ms = <50>;  // 事前のアイドル時間を追加
+    require-prior-idle-ms = <0>;  // 事前のアイドル時間を追加
 };
 
 / {
@@ -128,7 +128,7 @@
             flavor = "tap-preferred";
             tapping-term-ms = <150>;  // より短いタッピング時間
             quick-tap-ms = <125>;
-            require-prior-idle-ms = <50>;
+            require-prior-idle-ms = <0>;
         };
 
         lt_to_layer_0: lt_to_layer_0 {
@@ -139,7 +139,7 @@
             tapping-term-ms = <150>;  // より短いタッピング時間
             flavor = "tap-preferred";
             quick-tap-ms = <125>;
-            require-prior-idle-ms = <50>;
+            require-prior-idle-ms = <0>;
         };
     };
 

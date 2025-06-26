@@ -84,9 +84,9 @@
         };
 
         scrool {
-            bindings = <&tog 1>;
+            bindings = <&mo 1>;
             key-positions = <18 20>;
-            require-prior-idle-ms = <20>;
+            require-prior-idle-ms = <1>;
         };
 
         delete {
@@ -97,6 +97,16 @@
         backspace {
             bindings = <&kp BACKSPACE>;
             key-positions = <20 21>;
+        };
+
+        copy {
+            bindings = <&kp LC(C)>;
+            key-positions = <6 7>;
+        };
+
+        paste {
+            bindings = <&kp LC(V)>;
+            key-positions = <7 8>;
         };
     };
 

@@ -10,7 +10,7 @@ manifest:
   projects:
     - name: zmk
       remote: fffyuto
-      revision: fffyuto-patch-1
+      revision: fffyuto-JIS-1
       import: app/west.yml
 
     - name: zmk-pmw3610-driver
@@ -19,7 +19,7 @@ manifest:
 
     - name: zmk-layout-shift
       remote: kot149
-      revision: main
+      revision: v1
 
   self:
     path: config
